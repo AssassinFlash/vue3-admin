@@ -7,24 +7,18 @@
       <!-- username -->
       <el-form-item>
         <span class="svg-container">
-          <el-icon>
-            <Avatar />
-          </el-icon>
+          <SvgIcon icon="user" />
         </span>
         <el-input placeholder="请输入用户名" name="username" type="text" />
       </el-form-item>
       <!-- password -->
       <el-form-item>
         <span class="svg-container">
-          <el-icon>
-            <Lock />
-          </el-icon>
+          <SvgIcon icon="password" />
         </span>
         <el-input placeholder="请输入密码" name="password" />
         <span class="show-pwd">
-          <el-icon>
-            <Lock />
-          </el-icon>
+          <SvgIcon icon="eye" />
         </span>
       </el-form-item>
       <!-- 登录按钮 -->
@@ -35,9 +29,7 @@
   </div>
 </template>
 
-<script setup>
-import { Avatar, Lock } from '@element-plus/icons'
-</script>
+<script setup></script>
 
 <style lang="scss" scoped>
 $bg: #2d3a4b;
