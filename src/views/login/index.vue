@@ -1,24 +1,34 @@
 <template>
   <div class="login-container">
-    <el-form class="login-form">
+    <el-form class="login-form" :model="loginForm" :rules="loginRules">
       <div class="title-container">
         <h3 class="title">用户登录</h3>
       </div>
       <!-- username -->
-      <el-form-item>
+      <el-form-item prop="username">
         <span class="svg-container">
           <SvgIcon icon="user" />
         </span>
-        <el-input placeholder="请输入用户名" name="username" type="text" />
+        <el-input
+          v-model="loginForm.username"
+          placeholder="请输入用户名"
+          name="username"
+          type="text"
+        />
       </el-form-item>
       <!-- password -->
-      <el-form-item>
+      <el-form-item prop="password">
         <span class="svg-container">
           <SvgIcon icon="password" />
         </span>
-        <el-input placeholder="请输入密码" name="password" />
-        <span class="show-pwd">
-          <SvgIcon icon="eye" />
+        <el-input
+          v-model="loginForm.password"
+          placeholder="请输入密码"
+          name="password"
+          :type="passwordType"
+        />
+        <span class="show-pwd" @click="onChangePwdType">
+          <SvgIcon :icon="passwordType === 'password' ? 'eye' : 'eye-open'" />
         </span>
       </el-form-item>
       <!-- 登录按钮 -->
@@ -29,7 +39,42 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { validatePassword } from './rules'
+import { ref } from 'vue'
+
+// 数据源
+const loginForm = ref({
+  username: 'super-admin',
+  password: '123456'
+})
+// 校验规则
+const loginRules = ref({
+  username: [
+    {
+      required: true,
+      trigger: 'blur',
+      message: '用户名为必填项'
+    }
+  ],
+  password: [
+    {
+      required: true,
+      trigger: 'blur',
+      validator: validatePassword()
+    }
+  ]
+})
+
+// 处理密码框文本显示状态
+const passwordType = ref('password')
+// 点击事件
+const onChangePwdType = () => {
+  passwordType.value === 'password'
+    ? (passwordType.value = 'text')
+    : (passwordType.value = 'password')
+}
+</script>
 
 <style lang="scss" scoped>
 $bg: #2d3a4b;
