@@ -11,6 +11,9 @@ import './styles/index.scss'
 // 导入svg和SvgIcon组件进行全局注册
 import installIcons from '@/icons'
 
+// 导入全局守卫
+import '@/permission'
+
 const app = createApp(App)
 installElementPlus(app)
 installIcons(app)

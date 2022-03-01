@@ -4,11 +4,22 @@
 
 // 路径处理函数
 const path = require('path')
+
 function resolve(dir) {
   return path.join(__dirname, dir)
 }
 
 module.exports = {
+  // webpack 的 devServer 提供了代理的功能
+  // 可以把所有请求到当前服务的请求，转发到另外一个服务器上
+  devServer: {
+    proxy: {
+      '/api': {
+        target: 'https://api.imooc-admin.lgdsunday.club/',
+        changeOrigin: true
+      }
+    }
+  },
   chainWebpack(config) {
     // 设置 svg-sprite-loader
     config.module.rule('svg').exclude.add(resolve('src/icons')).end()

@@ -1,6 +1,11 @@
 <template>
   <div class="login-container">
-    <el-form class="login-form" :model="loginForm" :rules="loginRules">
+    <el-form
+      class="login-form"
+      :model="loginForm"
+      :rules="loginRules"
+      ref="loginFormRef"
+    >
       <div class="title-container">
         <h3 class="title">用户登录</h3>
       </div>
@@ -32,7 +37,12 @@
         </span>
       </el-form-item>
       <!-- 登录按钮 -->
-      <el-button type="primary" style="width: 100%; margin-bottom: 30px">
+      <el-button
+        type="primary"
+        style="width: 100%; margin-bottom: 30px"
+        :loading="loading"
+        @click="handleLogin"
+      >
         登录
       </el-button>
     </el-form>
@@ -41,6 +51,7 @@
 
 <script setup>
 import { validatePassword } from './rules'
+import { useStore } from 'vuex'
 import { ref } from 'vue'
 
 // 数据源
@@ -74,6 +85,27 @@ const onChangePwdType = () => {
     ? (passwordType.value = 'text')
     : (passwordType.value = 'password')
 }
+
+// 处理登录
+const loginFormRef = ref(null)
+const store = useStore()
+const loading = ref(false)
+const handleLogin = () => {
+  // 1. 触发表单校验
+  loginFormRef.value.validate((valid) => {
+    if (!valid) return
+    // 2. 登录请求
+    store
+      .dispatch('user/login', loginForm.value)
+      .then(() => {
+        loading.value = false
+        // TODO: 登录后处理
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  })
+}
 </script>
 
 <style lang="scss" scoped>
@@ -87,6 +119,7 @@ $cursor: #fff;
   min-height: 100%;
   background: $bg;
   overflow: hidden;
+
   .login-form {
     position: relative;
     width: 520px;
@@ -94,12 +127,14 @@ $cursor: #fff;
     margin: 0 auto;
     padding: 160px 35px 0;
     overflow: hidden;
+
     :deep(.el-form-item) {
       border: 1px solid rgba(255, 255, 255, 0.1);
       background: rgba(0, 0, 0, 0.1);
       border-radius: 5px;
       color: #454545;
     }
+
     :deep(.el-input) {
       display: inline-block;
       width: 85%;
@@ -116,14 +151,17 @@ $cursor: #fff;
         caret-color: $cursor;
       }
     }
+
     .svg-container {
       display: inline-block;
       padding: 6px 5px 6px 15px;
       color: $dark_gray;
       vertical-align: middle;
     }
+
     .title-container {
       position: relative;
+
       .title {
         margin: 0 auto 40px auto;
         text-align: center;
@@ -132,6 +170,7 @@ $cursor: #fff;
         font-size: 26px;
       }
     }
+
     .show-pwd {
       position: absolute;
       top: 7px;
