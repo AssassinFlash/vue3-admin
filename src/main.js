@@ -7,6 +7,8 @@ import installElementPlus from './plugins/element'
 
 // 导入初始化样式
 import './styles/index.scss'
+// 导入styles样式
+import './styles/sidebar.scss'
 
 // 导入svg和SvgIcon组件进行全局注册
 import installIcons from '@/icons'
