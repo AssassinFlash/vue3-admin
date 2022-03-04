@@ -3,13 +3,13 @@
 #app {
   .main-container {
     min-height: 100%;
-    transition: margin-left 0.28s;
+    transition: margin-left #{$sidebarDuration};
     margin-left: $sideBarWidth;
     position: relative;
   }
 
   .sidebar-container {
-    transition: width 0.28s;
+    transition: width #{$sidebarDuration};
     width: $sideBarWidth !important;
     height: 100%;
     position: fixed;
@@ -22,7 +22,7 @@
     // 重置 element-plus 的css
     .horizontal-collapse-transition {
       transition: 0s width ease-in-out, 0s padding-left ease-in-out,
-        0s padding-right ease-in-out;
+      0s padding-right ease-in-out;
     }
 
     .scrollbar-wrapper {
@@ -156,6 +156,7 @@
     .svg-icon {
       margin-right: 16px;
     }
+
     .sub-el-icon {
       margin-right: 12px;
       margin-left: -2px;

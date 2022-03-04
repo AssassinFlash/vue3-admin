@@ -2,14 +2,14 @@
   <!-- 外部图标和内部图标的分开展示 -->
   <!-- 展示外部图标 -->
   <div
-    v-if="isExternal"
-    :style="styleExternalIcon"
-    :class="className"
-    class="svg-external-icon svg-icon"
+    v-if='isExternal'
+    :style='styleExternalIcon'
+    :class='className'
+    class='svg-external-icon svg-icon'
   />
   <!-- 展示内部图标 -->
-  <svg v-else :class="className" class="svg-icon">
-    <use :xlink:href="iconName" />
+  <svg v-else :class='className' class='svg-icon'>
+    <use :xlink:href='iconName' />
   </svg>
 </template>
 
@@ -44,12 +44,14 @@ const iconName = computed(() => `#icon-${props.icon}`)
 
 <style scoped>
 .svg-icon {
-  width: 1em;
-  height: 1em;
-  vertical-align: -0.05em;
+  width: 1.3em;
+  height: 1.3em;
+  vertical-align: middle;
+  text-align: center;
   fill: currentColor;
   overflow: hidden;
 }
+
 .svg-external-icon {
   display: inline-block;
   mask-size: cover !important;

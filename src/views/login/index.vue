@@ -137,6 +137,7 @@ $cursor: #fff;
 
     :deep(.el-input) {
       display: inline-block;
+      vertical-align: middle;
       width: 85%;
       height: 47px;
 
@@ -146,7 +147,7 @@ $cursor: #fff;
         border-radius: 0;
         background: transparent;
         -webkit-appearance: none;
-        padding: 12px 5px 12px 15px;
+        padding: 12px 5px 12px 5px;
         color: $light_gray;
         caret-color: $cursor;
       }

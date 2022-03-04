@@ -3,6 +3,7 @@
   <!-- 绑定defaultActive为当前打开的url，这样刷新页面也不会丢失高亮菜单 -->
   <el-menu
     uniqueOpened
+    :collapse='!$store.getters.sidebarOpened'
     :default-active='activeMenu'
     :background-color='$store.getters.cssVar.menuBg'
     :text-color='$store.getters.cssVar.menuText'

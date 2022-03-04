@@ -15,6 +15,9 @@ const getters = {
   cssVar(state) {
     // 返回菜单栏样式
     return variables
+  },
+  sidebarOpened(state) {
+    return state.app.sidebarOpened
   }
 }
 export default getters
