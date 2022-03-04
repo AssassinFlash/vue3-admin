@@ -3,6 +3,8 @@
     <Hamburger />
     <Breadcrumb style='float: left' />
     <div class='right-menu'>
+      <!-- 国际化 -->
+      <LangSelect class='right-menu-item hover-effect' />
       <!-- 头像 -->
       <el-dropdown trigger='click' class='avatar-container'>
         <div class='avatar-wrapper'>
@@ -18,15 +20,14 @@
         <template #dropdown>
           <el-dropdown-menu class='user-dropdown'>
             <router-link to='/'>
-              <el-dropdown-item>首页</el-dropdown-item>
+              <el-dropdown-item>{{ $t('msg.navBar.home') }}</el-dropdown-item>
             </router-link>
             <a href='#' target='_blank'>
-              <el-dropdown-item>课程主页</el-dropdown-item>
+              <el-dropdown-item>{{ $t('msg.navBar.course') }}</el-dropdown-item>
             </a>
-            <el-dropdown-item divided @click='logout'
-            >退出登录
-            </el-dropdown-item
-            >
+            <el-dropdown-item divided @click='logout'>
+              {{ $t('msg.navBar.logout') }}
+            </el-dropdown-item>
           </el-dropdown-menu>
         </template>
       </el-dropdown>
@@ -38,6 +39,7 @@
 import { Setting } from '@element-plus/icons'
 import Hamburger from '@/components/Hamburger'
 import Breadcrumb from '@/components/Breadcrumb'
+import LangSelect from '@/components/LangSelect'
 import { useStore } from 'vuex'
 
 const store = useStore()
@@ -60,6 +62,18 @@ const logout = () => {
     display: flex;
     align-items: center;
     justify-content: center;
+
+    :deep(.right-menu-item) {
+      display: inline-block;
+      padding: 0 18px;
+      font-size: 24px;
+      color: #5a5e66;
+      vertical-align: text-bottom;
+
+      &.hover-effect {
+        cursor: pointer;
+      }
+    }
 
     :deep(.avatar-container) {
       cursor: pointer;

@@ -1,7 +1,7 @@
 <template>
   <!-- 菜单渲染 -->
   <!-- 激活路由跳转，element会默认以index作为路由跳转 -->
-  <el-submenu
+  <el-sub-menu
     v-if='route.children && route.children.length > 0'
     :index='route.path'
   >
@@ -14,7 +14,7 @@
       :key='item.path'
       :route='item'
     />
-  </el-submenu>
+  </el-sub-menu>
   <el-menu-item v-else :index='route.path'>
     <MenuItem :title='route.meta.title' :icon='route.meta.icon' />
   </el-menu-item>

@@ -10,7 +10,7 @@
           class='no-redirect'
           v-if='index === breadcrumbData.length -1'
         >
-        {{ item.meta.title }}
+        {{ generateTitle(item.meta.title) }}
       </span>
         <!-- 可点击 -->
         <router-link
@@ -18,7 +18,7 @@
           v-else
           :to='item.path'
         >
-          {{ item.meta.title }}
+          {{ generateTitle(item.meta.title) }}
         </router-link>
       </el-breadcrumb-item>
     </transition-group>
@@ -26,6 +26,7 @@
 </template>
 
 <script setup>
+import { generateTitle } from '@/utils/i18n'
 import { ref, watch, computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { useStore } from 'vuex'
