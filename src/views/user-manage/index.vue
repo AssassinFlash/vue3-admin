@@ -1,6 +1,6 @@
 <template>
-  <div class=''>
-    {{ $t('msg.test') }}
+  <div class="">
+    {{ $t('msg.theme.themeColorChange') }}
   </div>
 </template>
 
@@ -8,4 +8,4 @@
 import {} from 'vue'
 </script>
 
-<style lang='scss' scoped></style>
+<style lang="scss" scoped></style>

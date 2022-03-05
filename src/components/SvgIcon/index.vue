@@ -2,14 +2,14 @@
   <!-- 外部图标和内部图标的分开展示 -->
   <!-- 展示外部图标 -->
   <div
-    v-if='isExternal'
-    :style='styleExternalIcon'
-    :class='className'
-    class='svg-external-icon svg-icon'
+    v-if="isExternal"
+    :style="styleExternalIcon"
+    :class="className"
+    class="svg-external-icon svg-icon"
   />
   <!-- 展示内部图标 -->
-  <svg v-else :class='className' class='svg-icon'>
-    <use :xlink:href='iconName' />
+  <svg v-else :class="className" class="svg-icon">
+    <use :xlink:href="iconName" />
   </svg>
 </template>
 
