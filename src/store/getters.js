@@ -21,6 +21,9 @@ const getters = {
   },
   language(state) {
     return state.app.language
+  },
+  mainColor(state) {
+    return state.theme.mainColor
   }
 }
 export default getters

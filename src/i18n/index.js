@@ -6,6 +6,7 @@
 // 使用方式：let msg = t['msg.test']
 
 import { createI18n } from 'vue-i18n'
+import store from '@/store'
 import zhLocale from './lang/zh'
 import enLocale from './lang/en'
 
@@ -22,14 +23,16 @@ const messages = {
   }
 }
 
-const locale = 'en'
+function getLanguage() {
+  return store && store.getters && store.getters.language
+}
 
 const i18n = createI18n({
   // 使用 composition api 要把 legacy 设置为 false
   legacy: false,
   // 全局注册 t 函数
   globalInjection: true,
-  locale,
+  locale: getLanguage(),
   messages
 })
 
